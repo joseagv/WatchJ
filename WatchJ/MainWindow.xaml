@@ -5,8 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WatchJ"
         mc:Ignorable="d"
-        Title="WatchJ" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="TomatoTV" Height="450" Width="800"
+        ResizeMode="CanMinimize">
     <Grid>
-        
+        <Button Click="Button_Click_Watch" Name="WatchHiddenB" >
+            <TextBlock>
+                <AccessText>_Watch</AccessText>
+            </TextBlock>
+        </Button>
+        <TabControl TabStripPlacement="Left"  HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792">
+            <TabItem Header="Index">
+                <Grid Background="#FFE5E5E5">
+                    <Label FontSize="40"
+                             FontWeight="Heavy" Margin="203,10,273,0" RenderTransformOrigin="0.453,0.7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="237">
+                        <TextBlock TextWrapping="Wrap" Text="TomatoTV" HorizontalAlignment="Center" Opacity="0.99" Foreground="#FF850000" Width="217">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#FF33B203" BlurRadius="2" ShadowDepth="1"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Label>
+                    <Label Margin="10,120,546,264">Requeriments:</Label>
+                    <ListBox Margin="10,149,524,197">
+                        <ListBoxItem>.Net Framework 4.6.1 or newer.</ListBoxItem>
+                        <ListBoxItem>Youtube-dl.</ListBoxItem>
+                        <ListBoxItem>MPV Player.</ListBoxItem>
+                    </ListBox>
+                    <Label Margin="259,120,44,177">
+                        <TextBlock Width="408">A simple GUI that allow to use Youtube-dl without the Command Prompt.
+                            <LineBreak/>
+                            <LineBreak/>
+                            Also, you can save your favorite streams or videos from web pages like <LineBreak/>
+                            Twitch, Youtube ...
+                            <LineBreak/>
+                            <LineBreak/>
+                            New features are comming soon!
+                        </TextBlock>
+                    </Label>
+                    <Label Name="VersionL" Content="" HorizontalAlignment="Left" Margin="631,377,0,0" VerticalAlignment="Top" Width="72"/>
+                    <Label Name="VersionCheckL"  Content="" HorizontalAlignment="Left" Margin="213,78,0,0" VerticalAlignment="Top" Width="201"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Search">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="Button_Click_Play1" Name="Play1" Content="Play" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+                    <DataGrid Name="dgSearch" CanUserAddRows="false" CanUserDeleteRows="false" HorizontalAlignment="Left" Height="367" Margin="10,36,0,0" VerticalAlignment="Top" Width="693"/>
+                    <TextBox Name="searchTB" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="538" Margin="165,8,0,0"/>
+                    <Button Click="Button_Click_Search" x:Name="Search_Copy" Content="Search" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="MyList" Height="24" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5">
+                    <Button Click="Button_Click_Watch" Name="WatchB" Content="Watch"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Click="Button_Click_Play_List" x:Name="Play_ListB" Content="Play list" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Click="Button_Click_Save" Name="Save" Content="_Save changes" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Width="85"/>
+                    <DataGrid Name="dgMyList" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="367" Margin="10,36,0,0" VerticalAlignment="Top" Width="693">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Visibility="Hidden" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Url"  Binding="{Binding Url}" />
+                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                            <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate>
+                                <Button Click="Button_Click_Play" Name="Play" Content="Play" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Bottom" Width="75" />
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Config" Height="24" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="MPV path:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" Margin="10,38,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="519" Margin="102,38,0,0" Name="CfgMpvTB"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="61" Height="23" Click="SaveMvpPathB"/>
+                    <Label Content="Youtube-dl.exe should be copied in the same path of mpv.exe to peform a correct work." HorizontalAlignment="Left" Height="26" Margin="10,71,0,0" VerticalAlignment="Top" Width="693"/>
+                    <Button Name="MpvPathB" Click="Button_Click_Open_MPVPath" Content="Open" HorizontalAlignment="Left" Margin="626,38,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="UpdateLog" Height="24" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Update Log" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="updateLogTB" HorizontalAlignment="Left" Height="367" Margin="10,36,0,0" TextWrapping="Wrap" IsReadOnly="True" Text="" VerticalAlignment="Top" Width="693"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBlock HorizontalAlignment="Left" Margin="-112,27,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Window>
+
+    
