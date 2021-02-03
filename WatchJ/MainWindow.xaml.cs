@@ -25,7 +25,7 @@ namespace WatchJ
 
         private DataXml data;
         private UpdateLog log;
-        private string myVersion = "1.0.8";
+        private string myVersion = "1.0.9";
         private static string newVersion;
         private string myTitle = "";
         private string streamUrl = "";
